@@ -3,6 +3,54 @@ import hashlib
 import datetime
 from bson.timestamp import Timestamp
 
+db_client = MongoClient(db_ip, db_port)
+db = db_client[db_name]
+
+col_user = db[cfg['db']['col_user']]
+col_contents = db[cfg['db']['col_contents']]
+col_favorites = db[cfg['db']['col_favorites']]
+
+def add_favorite(doc_user, favorites, logger, favorite_limit=10):
+    """add one or more favorite company to the user's list.
+
+    :param doc_user: user document (DB)
+    :type doc_user:
+    :param favorites: favorite company list to add
+    :type favoriates: list
+    :param favorite_limit: maximum number of favorite companies for a user
+    :type favorite_limit: int
+    :return: the number of added items
+    :rtype: int
+    """
+    my_favorites = col_favorite.find_one({"User": doc_user["_id"]})
+    if my_favorites == None:
+        logger.info('{}: a favorite list created'.format(
+            doc_user["user_id"]))
+        my_favorites = {"User": doc_user["_id"],
+            "Company": []}
+        col_favorite.insert_one(my_favorites)
+    if len(my_favorites["Company"]) >= favorite_limit:
+        logger.info('{}: favorite list is already full'.format(
+            doc_user["user_id"]))
+        return 0
+    ret = 0
+    for f in favorites:
+        doc_company = col_company.find_one({"name": f})
+        if not doc_company:
+            continue
+        if doc_company["_id"] in my_favorites["Company"]:
+            continue
+        my_favorites["Company"] += [doc_company["_id"]]
+        logger.info('{}: {} added into favorite list'.format(
+            doc_user["user_id"], f))
+        ret += 1
+
+    if ret >= 1:
+        col_favorite.find_one_and_replace({"User": doc_user["_id"]}, my_favorites)
+
+    return ret
+
+
 def convert_to_SHA256(x):
     """Convert a given string to SHA256-encoded string.
 
