@@ -20,7 +20,7 @@ def login():
     logger.info('{}: login'.format(user_id))
 
     ret = {"result": None,
-        "session_key": None,
+        "session_id": None,
         "msg": ""}
 
     session_key = user.login(user_id, passwd, logger)
@@ -30,7 +30,7 @@ def login():
         ret["msg"] = "Failed to login"
     else:
         ret["result"] = True
-        ret["session_key"] = session_key
+        ret["session_id"] = session_key["session_id"]
 
     pdb.set_strace()
     logger.info('{}: login result = {}'.format(user_id, ret))
