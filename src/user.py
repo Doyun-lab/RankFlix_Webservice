@@ -100,6 +100,5 @@ def check_session(col_user, session_id, timestamp, elapse_limit=60):
     elapsed = current_timestamp.time - the_timestamp.time
     if elapsed >= elapse_limit:
         return False
-    return the_user
-
-
+    return the_user 
+       
