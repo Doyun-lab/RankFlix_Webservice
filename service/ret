@@ -70,3 +70,4 @@
 <title>500 Internal Server Error</title>
 <h1>Internal Server Error</h1>
 <p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+{"msg":"","result":true,"session_id":"109def3379afbf3ece9078176d1ecc88976d3a2e393ffe590567972118a84d00"}
