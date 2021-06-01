@@ -19,6 +19,8 @@
 
 * python >= 3.6.9
 * flask >= 1.1.1, <= 1.1.2
+* mongodb >= 3.6.3
+* beautifulsoup4 >= 4.9.3
 
 #### How to install
 
