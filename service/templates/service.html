@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+        <meta charset="UTF-8">
+        <title>My home 20170030</title>
+</head>
+<body>
+        <div id="service_title"></div>
+        <div id="service_content">
+                        NO content
+        </div>
+</body>
+<script src="{{url_for('static', filename='jquery-1.12.4.min.js')}}"></script>
+<script src="{{url_for('static', filename='jquery-ui.js')}}"></script>
+<script type="text/javascript">
+var sess_info = '{{ session_info|safe }}';
+console.log(sess_info);
+var sess_info_json = JSON.parse(sess_info);
+var sess_id = sess_info_json['session_id'];
+console.log(sess_id);
+var service_type = sess_info_json['service_type'];
+var company_name = "";
+
+function service1(service1_info_json)
+{
+        console.log("service1");
+        console.log(JSON.stringify(service1_info_json));
+
+        $("#service_title").html("<h2>Service #1 - 관심종목 예상수치</h2>");
+
+        if (service1_info_json['result'] == true)
+        {
+                let companies = Object.keys(service1_info_json['msg']);
+                console.log(companies);
+
+                var table_html = '<table border="2">' +
+                        '<th>관심 종목</th>' +
+                        '<th>최근 날짜</th>' +
+                        '<th>최근 수치</th>' +
+                        '<th>예측 날짜</th>' +
+                        '<th>예측 수치</th>' +
+                        '<th>Service 2</th>';
+                for(var i=0; i < companies.length; ++i) {
+                        var cname = companies[i];
+                        var recent_date = service1_info_json['msg'][cname]['recent']['date'];
+                        var recent_value = service1_info_json['msg'][cname]['recent']['value'];
+                        var predicted_date = service1_info_json['msg'][cname]['predicted']['date'];
+                        var predicted_value = service1_info_json['msg'][cname]['predicted']['value'];
+
+                        table_html += '<tr>';
+                        table_html += '<td>' + cname + '</td>';
+                        table_html += '<td>' + recent_date + '</td>';
+                        table_html += '<td>' + recent_value + '</td>';
+                        table_html += '<td>' + predicted_date + '</td>';
+                        table_html += '<td>' + predicted_value + '</td>';
+                        table_html += '<td><button onclick="goto_service2(\'' + cname + '\')">유사 종목보기</button></td>';
+                        table_html += '</tr>';
+                }
+                table_html += '</table>';
+                $("#service_content").html(table_html);
+        }
+        else
+        {
+                $("#service_content").html("No content");
+        }
+}
+
+function service2(service2_info_json)
+{
+        console.log("service2");
+        console.log(JSON.stringify(service2_info_json));
+
+        $("#service_title").html("<h2>Service #2 - '" + company_name + "' 유사종목</h2>");
+
+        if (service2_info_json['result'] == true)
+        {
+                let sims = service2_info_json['msg']['similar_list'];
+                let total_sims = 10;
+
+                var table_html = '<table border="2">' +
+                        '<th>Rank</th>' +
+                        '<th>종목</th>' +
+                        '<th>유사도</th>';
+                for(var i=0; i < total_sims; ++i) {
+                        if (i >= sims.length)
+                                break;
+                        var cname = sims[i][0];
+                        var sim_value = sims[i][1];
+
+                        table_html += '<tr>';
+                        table_html += '<td>' + (i+1) + '</td>';
+                        table_html += '<td>' + cname + '</td>';
+                        table_html += '<td>' + sim_value + '</td>';
+                        table_html += '</tr>';
+                }
+                table_html += '</table>';
+                $("#service_content").html(table_html);
+        }
+        else
+        {
+                $("#service_content").html("No content");
+        }
+}
+
+function refresh(event)
+{
+        if (service_type == "service1") {
+                $.ajax({
+                url: "http://54.180.151.149:11100/services",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                        "session_id": sess_id,
+                        "request_type": "service1"
+                }),
+                dataType: "json",
+                success: service1
+                });
+        } else {
+                $.ajax({
+                url: "http://54.180.151.149:11100/services",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                        "session_id": sess_id,
+                        "request_type": "service2",
+                        "company_name": company_name
+                }),
+                dataType: "json",
+                success: service2
+                });
+        }
+}
+
+function goto_service2(target_company_name)
+{
+        company_name = target_company_name;
+        service_type = "service2";
+        refresh();
+}
+
+$(window).on("load", refresh(event));
+
+</script>
+</html>
+
