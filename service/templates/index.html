@@ -8,6 +8,7 @@
 		 border:1px solid #ccc;
 		 border-collapse: collapse;
 	}
+	th, td { padding:10px 20px; }
 	</style>
 
 </head>
@@ -36,7 +37,7 @@
 
 	<div id="container">
       		<a href="https://www.netflix.com/browse">
-        		<img src="/home/ubuntu/da_design_server20181480/service/templates/Netflix.png" alt ="" width="50%">
+			<img src="{{url_for('static', filename='Netflix.png')}}" alt ="" width="50%">
         	</a>
       		<h2>넷플릭스 국가별 순위</h2>
 		<h3>한국 순위
@@ -58,31 +59,31 @@
           	  <tbody>
             	   <tr>
               	    <td>1위</td>
-              	    <td>킹덤</td>
+              	    <td><a href="https://www.netflix.com/search?q=%ED%82%B9%EB%8D%A4&jbv=80180171">킹덤</a></td>
               	    <td>주지훈, 배두나 등</td>
               	    <td>김성훈</td>
 		   </tr>
             	   <tr>
               	    <td>2위</td>
-              	    <td>스위트홈</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EC%8A%A4%EC%9C%84%ED%8A%B8%ED%99%88&jbv=81061734">스위트홈</a></td>
               	    <td>송강, 이진욱 등</td>
              	    <td>이응복</td>
             	   </tr>
             	   <tr>
               	    <td>3위</td>
-              	    <td>보건교사 안은영</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EC%8A%A4%EC%9C%84%ED%8A%B8%ED%99%88&jbv=80209129">보건교사 안은영</a></td>
               	    <td>정유미, 남주혁 등</td>
               	    <td>이경미</td>
             	   </tr>
             	   <tr>
               	    <td>4위</td>
-              	    <td>익스트랙션</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9E%99%EC%85%98&jbv=80230399">익스트랙션</a></td>
               	    <td>크리스 헴스워스 등</td>
               	    <td>샘 하그레이브</td>
             	   </tr>
             	   <tr>
               	    <td>5위</td>
-              	    <td>페르소나</td>
+              	    <td><a href="https://www.netflix.com/search?q=%ED%8E%98%EB%A5%B4%EC%86%8C%EB%82%98&jbv=81044884">페르소나</a></td>
               	    <td>아이유, 배두나 등</td>
               	    <td>이경미, 임필성</td>
            	   </tr>
@@ -108,31 +109,31 @@
           	  <tbody>
             	   <tr>
               	    <td>1위</td>
-              	    <td>우리의 지구</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EC%9A%B0%EB%A6%AC%EC%9D%98%20%EC%A7%80%EA%B5%AC&jbv=80049832">우리의 지구</a></td>
               	    <td>데이비드 애튼버러 등</td>
               	    <td>스티븐 프라이스</td>
             	   </tr>
             	   <tr>
               	    <td>2위</td>
-              	    <td>기묘한 이야기</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EA%B8%B0%EB%AC%98%ED%95%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0&jbv=80057281">기묘한 이야기</a></td>
               	    <td>위노나 라이더 등</td>
              	    <td>더퍼 형제</td>
             	   </tr>
             	   <tr>
               	    <td>3위</td>
-              	    <td>키싱 부스</td>
+              	    <td><a href="https://www.netflix.com/search?q=%ED%82%A4%EC%8B%B1%20%EB%B6%80%EC%8A%A4&jbv=80143556">키싱 부스</a></td>
               	    <td>조이 킹 등</td>
               	    <td>빈스 마르셀로</td>
             	   </tr>
             	   <tr>
               	    <td>4위</td>
-              	    <td>신성한 게임</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EC%8B%A0%EC%84%B1%ED%95%9C%20%EA%B2%8C%EC%9E%84&jbv=80115328">신성한 게임</a></td>
               	    <td>나와주딘 시디퀴 등</td>
               	    <td>아누락 카시압</td>
             	   </tr>
             	   <tr>
               	    <td>5위</td>
-              	    <td>더 위쳐</td>
+              	    <td><a href="https://www.netflix.com/search?q=%EB%8D%94%20%EC%9C%84%EC%B3%90&jbv=80189685">더 위쳐</a></td>
               	    <td>헨리 카빌 등</td>
               	    <td>로런 슈밋 히스릭</td>
            	   </tr>
@@ -158,31 +159,31 @@
                    <tbody>
                    <tr>
                      <td>1위</td>
-                     <td>기묘한 이야기</td>
+                     <td><a href="https://www.netflix.com/search?q=%EA%B8%B0%EB%AC%98%ED%95%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0&jbv=80057281">기묘한 이야기</a></td>
                      <td>위노나 라이더 등</td>
                      <td>더퍼 형제</td>
                     </tr>
                     <tr>
                      <td>2위</td>
-                     <td>오티스의 비밀 상담소</td>
+                     <td><a href="https://www.netflix.com/search?q=%EC%98%A4%ED%8B%B0%EC%8A%A4&jbv=80197526">오티스의 비밀 상담소</a></td>
                      <td>에이사 버터필드 등</td>
                      <td>로리 넌</td>
                     </tr>
                     <tr>
                      <td>3위</td>
-                     <td>빅 마우스</td>
+                     <td><a href="https://www.netflix.com/search?q=%EB%B9%85%20%EB%A7%88%EC%9A%B0%EC%8A%A4&jbv=80117038">빅 마우스</a></td>
                      <td>닉 크롤 등</td>
                      <td>안드류 골드버그</td>
                     </tr>
                     <tr>
                      <td>4위</td>
-                     <td>리버데일</td>
+                     <td><a href="https://www.netflix.com/search?q=%EB%A6%AC%EB%B2%84%EB%8D%B0%EC%9D%BC&jbv=80133311">리버데일</a></td>
                      <td>콜 스프로즈</td>
                      <td>로베르토 아기레사카사</td>
                     </tr>
                     <tr>
                      <td>5위</td>
-                     <td>유로비전 송 콘테스트</td>
+                     <td><a href="https://www.netflix.com/search?q=%EC%9C%A0%EB%A1%9C%EB%B9%84%EC%A0%84&jbv=80244088">유로비전 송 콘테스트</a></td>
                      <td>레이첼 맥아담스 등</td>
                      <td>데이빗 돕킨</td>
                     </tr>
@@ -192,4 +193,5 @@
 	</div>
 </body>
 </html>
+
 
