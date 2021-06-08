@@ -26,7 +26,7 @@ function service1(service1_info_json)
         console.log("service1");
         console.log(JSON.stringify(service1_info_json));
 
-        $("#service_title").html("<h2>Service #1 - 관심종목 예상수치</h2>");
+        $("#service_title").html("<h2>관심 콘텐츠 목록</h2>");
 
         if (service1_info_json['result'] == true)
         {
@@ -34,19 +34,15 @@ function service1(service1_info_json)
                 console.log(companies);
 
                 var table_html = '<table border="2">' +
-                        '<th>관심 종목</th>' +
-                        '<th>최근 날짜</th>' +
-                        '<th>최근 수치</th>' +
-                        '<th>예측 날짜</th>' +
-                        '<th>예측 수치</th>' +
+                        '<th>관심 콘텐츠</th>' +
+                        '<th>배우</th>' +
+                        '<th>감독</th>' +
                         '<th>Service 2</th>';
                 for(var i=0; i < companies.length; ++i) {
                         var cname = companies[i];
                         var recent_date = service1_info_json['msg'][cname]['recent']['date'];
                         var recent_value = service1_info_json['msg'][cname]['recent']['value'];
-                        var predicted_date = service1_info_json['msg'][cname]['predicted']['date'];
-                        var predicted_value = service1_info_json['msg'][cname]['predicted']['value'];
-
+                       
                         table_html += '<tr>';
                         table_html += '<td>' + cname + '</td>';
                         table_html += '<td>' + recent_date + '</td>';

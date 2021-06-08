@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from bson.json_util import loads, dumps
 import os
-from src import user, mylogger, myconfig
+from src import user, mylogger, myconfig, mymodel
+import datetime
 import pdb
 
 app = Flask(__name__)
@@ -12,29 +14,10 @@ project_root_path = os.getenv("DA_DESIGN_SERVER")
 cfg = myconfig.get_config('{}/share/project.config'.format(
     project_root_path))
 log_directory = cfg['logger'].get('log_directory')
-logger = mylogger.get_logger('login', log_directory)
-
-@app.route('/login', methods=["POST"])
-def login():
-    user_id = request.json.get('user_id')
-    passwd = request.json.get('passwd')
-    logger.info('{}: login'.format(user_id))
-
-    ret = {"result": None,
-        "session_id": None,
-        "msg": ""}
-
-    session_key = user.login(user_id, passwd, logger)
-    logger.info('{}: session_key = {}'.format(user_id, session_key))
-    if not session_key:
-        ret["result"] = False
-        ret["msg"] = "Failed to login"
-    else:
-        ret["result"] = True
-        ret["session_id"] = session_key["session_id"]
-
-    logger.info('{}: login result = {}'.format(user_id, ret))
-    return ret
+loggers = dict()
+loggers['login'] = mylogger.get_logger('login', log_directory)
+loggers['favorite'] = mylogger.get_logger('favorite', log_directory)
+loggers['service'] = mylogger.get_logger('service', log_directory)
 
 @app.route('/favorite', methods=["POST"])
 def favorite():
@@ -53,41 +36,85 @@ def favorite():
     ret = {"result": None,
         "msg": ""}
 
-    if request_type == 'add':
-        what_time_is_it = datetime.datetime.now()
-        doc_user = user.check_session(session_id,
-                what_time_is_it.timestamp())
-        if not doc_user:
-            msg = '{}: Invalid session'.format(session_id)
-            loggers['favorite'].error(msg)
-            ret['result'] = False
-            ret['msg'] = msg
-        else:
-            favorites = request.json.get('favorite')
-            how_many_added = user.add_favorite(doc_user,
-                    favorites, loggers['favorite'])
-            new_session = user.generate_session(doc_user)
-            if how_many_added:
-                msg = '{}: {} favorite items added'.format(
-                    session_id, how_many_added)
-                ret['result'] = True
-            else:
-                msg = '{}: No favorite items added'.format(
-                    session_id)
-                ret['result'] = False
-            ret['msg'] = msg
-            ret['session_id'] = new_session["session_id"]
-    elif request_type == 'get':
-        pass
-    else:
+    if request_type not in ['add', 'get']:
         msg = '{}: Invalid request type = {}'.format(
                 session_id, request_type)
         loggers['favorite'].error(msg)
         ret['result'] = False
         ret['msg'] = msg
+        return ret
+
+    what_time_is_it = datetime.datetime.now()
+    doc_user = user.check_session(session_id,
+            what_time_is_it.timestamp())
+    if not doc_user:
+        msg = '{}: Invalid session'.format(session_id)
+        loggers['favorite'].error(msg)
+        ret['result'] = False
+        ret['msg'] = msg
+        return ret
+
+    if request_type == 'add':
+        favorites = request.json.get('favorite')
+        how_many_added = user.add_favorite(doc_user,
+                favorites, loggers['favorite'])
+        new_session = user.generate_session(doc_user)
+        if how_many_added:
+            msg = '{}: {} favorite items added'.format(
+                session_id, how_many_added)
+            ret['result'] = True
+        else:
+            msg = '{}: No favorite items added'.format(
+                session_id)
+            ret['result'] = False
+        ret['msg'] = msg
+        ret['session_id'] = new_session["session_id"]
+    elif request_type == 'get':
+        favorite_list = user.get_favorite(doc_user,
+                loggers['favorite'])
+        if not favorite_list:
+            msg = '{}: Empty favorite list'.format(session_id)
+            loggers['favorite'].error(msg)
+            ret['result'] = False
+            ret['msg'] = msg
+        else:
+            ret['favorite'] = favorite_list
+            ret['result'] = True
+            new_session = user.generate_session(doc_user)
+            ret['session_id'] = new_session["session_id"]
 
     loggers['favorite'].info('{}: favorite result = {}'.format(
         session_id, ret))
+    return ret
+
+
+@app.route('/login', methods=["POST"])
+def login():
+    """login API function.
+
+    Specification can be found in `API.md` file.
+
+    :return: JSON serialized string containing the login result with session_id
+    :rtype: str
+    """
+    user_id = request.json.get('user_id')
+    passwd = request.json.get('passwd')
+    loggers['login'].info('{}: login'.format(user_id))
+
+    ret = {"result": None,
+        "session_id": None,
+        "msg": ""}
+
+    session_key = user.login(user_id, passwd, loggers['login'])
+    loggers['login'].info('{}: session_key = {}'.format(user_id, session_key))
+    if not session_key:
+        ret["result"] = False
+        ret["msg"] = "Failed to login"
+    else:
+        ret["result"] = True
+        ret["session_id"] = session_key["session_id"]
+
+    loggers['login'].info('{}: login result = {}'.format(user_id, ret))
     return ret
 
 @app.route('/')
@@ -128,7 +155,7 @@ def handle_login():
     if not ret["result"]:
         return render_template("login_failed.html")
 
-    ret_json = json_util.dumps(ret, ensure_ascii=False)
+    ret_json = dumps(ret, ensure_ascii=False)
 
     return render_template("service.html",
             session_info=ret_json)
@@ -173,7 +200,7 @@ def services():
         ret['msg'] = mymodel.get_service1_result(favorites, loggers['service'])
         ret['result'] = True
     elif request_type == 'service2':
-        company_name = request.json.get('company_name')
+        company_name = request.json.get('content_title')
         ret['msg'] = mymodel.get_service2_result(company_name, loggers['service'])
         ret['result'] = True
 
