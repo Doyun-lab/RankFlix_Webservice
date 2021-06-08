@@ -9,12 +9,38 @@
 		 border-collapse: collapse;
 	}
 	th, td { padding:10px 20px; }
+
+	ul{
+		background-color: #ff3300;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+	li { float: left; }
+	li a {
+		display: block;
+		background-color: #ff3300;
+		color: #000000;
+		padding: 8px;
+		text-decoration: none;
+		text-align: center;
+		font-weight: bold;
+	}
+	li a.current{
+		background-color: #333CCC;
+		color: white;
+	}
+	li a:hover:not(.current) {
+		background-color: #FFFF00;
+		color: white;
+	}
 	</style>
 
 </head>
 <body>
         <div class='page-header'>
-                <h3>Menu bar</h3>
+                <h3>Netflix Market</h3>
                 <div class='Menu-bar'>
                         <ul class='menu-bar'>
                                 <li><a href="{{url_for('web_help')}}">Help</a></li>

@@ -3,11 +3,39 @@
 <head>
         <meta charset="UTF-8">
         <title>Netflix Recommenation - Doyun</title>
+	<style>
+	 table, th, td {
+		 border:1px solid #ccc;
+		 border-collapse: collapse;
+	}
+	th, td { padding:10px 20px; }
+	</style>
 </head>
 <body>
         <div id="service_title"></div>
         <div id="service_content">
-                        NO content
+                 <table>
+          	  <caption>    의 선호 콘텐츠</caption>
+          	  <colgroup>
+            	   <col style="background-color: rgb(194, 194, 191);">
+            	   <col>
+            	   <col span="2" style="width:15-px;">
+          	  </colgroup>
+          	  <thead>
+            	   <tr>
+              	    <th>제목</th>
+              	    <th>배우</th>
+              	    <th>감독</th>
+                   </tr>
+          	  </thead>
+          	  <tbody>
+            	   <tr>
+              	    <td>킹덤</td>
+              	    <td>주지훈, 배두나 등</td>
+              	    <td>김성훈</td>
+		   </tr>
+		  </tbody>
+		  </table>
         </div>
 </body>
 <script src="{{url_for('static', filename='jquery-1.12.4.min.js')}}"></script>
@@ -39,16 +67,14 @@ function service1(service1_info_json)
                         '<th>감독</th>' +
                         '<th>Service 2</th>';
                 for(var i=0; i < companies.length; ++i) {
-                        var cname = companies[i];
-                        var recent_date = service1_info_json['msg'][cname]['recent']['date'];
-                        var recent_value = service1_info_json['msg'][cname]['recent']['value'];
+                        var cname = "스위트홈";
+                        var recent_actor = service1_info_json[i'msg'][cname]['recent']['actor'];
+                        var recent_director = service1_info_json['msg'][cname]['recent']['director'];
                        
                         table_html += '<tr>';
                         table_html += '<td>' + cname + '</td>';
-                        table_html += '<td>' + recent_date + '</td>';
-                        table_html += '<td>' + recent_value + '</td>';
-                        table_html += '<td>' + predicted_date + '</td>';
-                        table_html += '<td>' + predicted_value + '</td>';
+                        table_html += '<td>' + recent_actor + '</td>';
+                        table_html += '<td>' + recent_director + '</td>';
                         table_html += '<td><button onclick="goto_service2(\'' + cname + '\')">유사 종목보기</button></td>';
                         table_html += '</tr>';
                 }
