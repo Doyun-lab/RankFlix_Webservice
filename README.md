@@ -27,8 +27,8 @@
 * Clone & Install
 
 ```sh
-git clone ...........
-cd da_design_server_학번
+git clone https://github.com/Doyun-lab/da_design_server20181480
+cd da_design_server_20181480
 pip3 install -r requirements.txt
 ```
 
@@ -36,7 +36,7 @@ pip3 install -r requirements.txt
 
 ```sh
 ~$ cat >> ~/.bashrc
-export DA_DESIGN_SERVER=/home/userid/da_design_server...
+export DA_DESIGN_SERVER=/home/ubuntu/da_design_server20181480
 export PYTHONPATH=$PYTHONPATH:$DA_DESIGN_SERVER
 Ctrl+d
 
@@ -59,7 +59,7 @@ TODO
 
 ### Contacts
 
-나의이메일
+dy20181480@gmail.com
 
 ---
 
