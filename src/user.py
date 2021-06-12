@@ -167,7 +167,7 @@ def add_favorite(doc_user, favorites, logger, favorite_limit=10):
             continue
         if doc_company["_id"] in my_favorites["Contents"]:
             continue
-        my_favorites["Company"] += [doc_company["_id"]]
+        my_favorites["Contents"] += [doc_company["_id"]]
         logger.info('{}: {} added into favorite list'.format(
             doc_user["user_id"], f))
         ret += 1
@@ -177,4 +177,23 @@ def add_favorite(doc_user, favorites, logger, favorite_limit=10):
 
     return ret
 
+def get_favorite(doc_user, logger):
+    """return the user's list of favorite companies.
+
+    :param doc_user: user document (DB)
+    :type doc_user:
+    :param logger: logger instance
+    :type logger: logging.Logger
+    :return: a list of favorite companies
+    :rtype: list
+    """
+    ret = []
+    my_favorites = col_favorite.find_one({"User": doc_user["_id"]})
+    if my_favorites != None:
+        ret = my_favorites["Contents"]
+    if ret:
+        ret = [(col_company.find_one({"_id": x})).get("name") for x in ret]
+    logger.info('{}: get favorite list = {}'.format(
+        doc_user["user_id"], ret))
+    return ret
 
