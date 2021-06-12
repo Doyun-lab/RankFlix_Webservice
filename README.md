@@ -10,10 +10,10 @@
 ---
 
 ### Project summary
+넷플릭스 이용자들에게 데이터 기반 랭킹 및 콘텐츠 추천을 제공하는 웹 서비스를 개발한다.
 
 #### Purpose
-
-데이터아키텍처창의설계 수업 프로젝트 - server side
+데이터아키텍처창의설계 수업 프로젝트 - server side 및 client side 개발
 
 #### Requirements
 
@@ -21,6 +21,9 @@
 * flask >= 1.1.1, <= 1.1.2
 * mongodb >= 3.6.3
 * beautifulsoup4 >= 4.9.3
+* selenium >= 3.141.0
+* xlrd >= 2.0.1
+* Google Chrome >= 91.0.4472.101
 
 #### How to install
 
