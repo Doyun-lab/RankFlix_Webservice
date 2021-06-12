@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from bson.json_util import loads, dumps
 import os
-from src import user, mylogger, myconfig, mymodel
+from src import user, mylogger, myconfig
 import datetime
 import pdb
 
@@ -201,32 +201,6 @@ def services():
     ret = {"result": None,
         "msg": ""}
 
-    if request_type not in ['service1', 'service2']:
-        msg = '{}: Invalid request type = {}'.format(
-                session_id, request_type)
-        loggers['service'].error(msg)
-        ret['result'] = False
-        ret['msg'] = msg
-        return ret
-
-    what_time_is_it = datetime.datetime.now()
-    doc_user = user.check_session(session_id,
-            what_time_is_it.timestamp())
-    if not doc_user:
-        msg = '{}: Invalid session'.format(session_id)
-        loggers['service'].error(msg)
-        ret['result'] = False
-        ret['msg'] = msg
-        return ret
-
-    if request_type == 'service1':
-        favorites = user.get_favorite(doc_user, loggers['service'])
-        ret['msg'] = mymodel.get_service1_result(favorites, loggers['service'])
-        ret['result'] = True
-    elif request_type == 'service2':
-        company_name = request.json.get('content_title')
-        ret['msg'] = mymodel.get_service2_result(company_name, loggers['service'])
-        ret['result'] = True
 
     loggers['service'].info('{}: service result = {}'.format(
         session_id, ret))
