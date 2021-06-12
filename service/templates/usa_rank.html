@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<body style="background-color:#F3F2F0">
+  <div id="container">
+    <a href="https://www.netflix.com/browse">
+<img src="{{url_for('static', filename='netflix.png')}}" alt ="" width="50%", align="center">
+    </a>
+
+      <h3 align="center">미국 순위
+        <table style="margin-left: auto; margin-right: auto;">
+           <caption>Youtube 역대 조회수 랭킹 (Netflix USA)</caption>
+           <colgroup>
+              <col style="background-color: rgb(194, 194, 191);">
+              <col>
+              <col span="2" style="width:15-px;">
+           </colgroup>
+           <thead>
+              <tr>
+                 <th>순위</th>
+                 <th>제목</th>
+                 <th>배우</th>
+                 <th>감독</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr>
+                 <td>1위</td>
+                 <td>
+       <a href="https://www.netflix.com/search?q=%EC%9A%B0%EB%A6%AC%EC%9D%98%EC%A7%80%EA%B5%AC&jbv=80049832">
+                                 <img src="{{url_for('static', filename='ourearth.png')}}" alt ="" width="100%">
+                         </a>
+     </td>
+                 <td>데이비드 애튼버러 등</td>
+                 <td>스티븐 프라이스</td>
+              </tr>
+              <tr>
+                 <td>2위</td>
+                 <td>
+       <a href="https://www.netflix.com/search?q=%EA%B8%B0%EB%AC%98%ED%95%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0&jbv=80057281">
+                                 <img src="{{url_for('static', filename='stranger.png')}}" alt ="" width="100%">
+                         </a>
+     </td>
+                 <td>위노나 라이더 등</td>
+                <td>더퍼 형제</td>
+              </tr>
+              <tr>
+                 <td>3위</td>
+                 <td>
+       <a href="https://www.netflix.com/search?q=%ED%82%A4%EC%8B%B1%20%EB%B6%80%EC%8A%A4&jbv=80143556">
+                                 <img src="{{url_for('static', filename='kiss.png')}}" alt ="" width="100%">
+                         </a>
+     </td>
+                 <td>조이 킹 등</td>
+                 <td>빈스 마르셀로</td>
+              </tr>
+              <tr>
+                 <td>4위</td>
+                 <td>
+       <a href="https://www.netflix.com/search?q=%EC%8B%A0%EC%84%B1%ED%95%9C%20%EA%B2%8C%EC%9E%84&jbv=80115328">
+                                 <img src="{{url_for('static', filename='game.png')}}" alt ="" width="100%">
+                         </a>
+     </td>
+                 <td>나와주딘 시디퀴 등</td>
+                 <td>아누락 카시압</td>
+              </tr>
+              <tr>
+                 <td>5위</td>
+                 <td>
+       <a href="https://www.netflix.com/search?q=%EC%9C%84%EC%B3%90&jbv=80189685">
+                                 <img src="{{url_for('static', filename='witcher.png')}}" alt ="" width="100%">
+                         </a>
+     </td>
+                 <td>헨리 카빌 등</td>
+                 <td>로런 슈밋 히스릭</td>
+             </tr>
+           </tbody>
+        </table> 
+       </h3>
+
+
+  
+</body>
+
+
+
+{% endblock %}
+

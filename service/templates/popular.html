@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<body style="background-color:#F3F2F0">
+  <div id="container">
+    <a href="https://www.netflix.com/browse">
+<img src="{{url_for('static', filename='netflix.png')}}" alt ="" width="50%", align="center">
+    </a>
+    <h2 align="center">2021년 5월 순위
+      <table style="margin-left: auto; margin-right: auto;">
+         <caption>월간 랭킹</caption>
+         <colgroup>
+            <col style="background-color: rgb(194, 194, 191);">
+            <col>
+            <col span="2" style="width:15-px;">
+         </colgroup>
+         <thead>
+            <tr>
+               <th>순위</th>
+               <th>제목</th>
+               <th>배우</th>
+               <th>감독</th>
+              </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>1위</td>
+               <td>
+     <a href="https://www.netflix.com/search?q=%EB%9D%BC%EA%B7%B8%EB%82%98%EB%A1%9C%ED%81%AC&jbv=80232926">
+       <img src="{{url_for('static', filename='ragnarok.png')}}" alt ="" width="100%">
+     </a>
+   </td>
+               <td>다비드 스탁스톤 등</td>
+               <td>아담 프라이스</td>
+  </tr>
+            <tr>
+               <td>2위</td>
+               <td>
+     <a href="https://www.netflix.com/search?q=%EC%95%84%EB%AF%B8%EC%98%A4%EB%B8%8C%EB%8D%94%EB%8D%B0%EB%93%9C&jbv=81046394">
+           <img src="{{url_for('static', filename='army.png')}}" alt ="" width="100%">
+     </a>
+   </td>
+               <td>데이브 바티스타 등</td>
+              <td>잭 스나이더</td>
+            </tr>
+            <tr>
+               <td>3위</td>
+               <td>
+     <a href="https://www.netflix.com/search?q=%EB%9F%AC%EB%B8%8C%EB%8D%B0%EC%8A%A4%EB%A1%9C%EB%B4%87&jbv=80174608">
+       <img src="{{url_for('static', filename='death.png')}}" alt ="" width="100%">
+     </a>
+   </td>
+               <td>애니메이션</td>
+               <td>팀 밀러</td>
+            </tr>
+            <tr>
+               <td>4위</td>
+               <td>
+     <a href="https://www.netflix.com/search?q=%EC%A2%85%EC%9D%B4%EC%9D%98%EC%A7%91&jbv=80192098">
+       <img src="{{url_for('static', filename='money.png')}}" alt ="" width="100%">
+     </a>
+   </td>
+               <td>우르술라 코르베로 등</td>
+               <td>알렉스 피나</td>
+            </tr>
+            <tr>
+               <td>5위</td>
+               <td>
+     <a href="https://www.netflix.com/search?q=%EC%A3%BC%ED%94%BC%ED%84%B0%EC%8A%A4%EB%A0%88%EA%B1%B0%EC%8B%9C&jbv=80244953">
+       <img src="{{url_for('static', filename='legacy.png')}}" alt ="" width="100%">
+     </a>
+   </td>
+               <td>조시 더멜 등</td>
+               <td>스티븐 S. 디나이트</td>
+           </tr>
+         </tbody>
+      </table>
+     </h2>
+
+
+  
+</body>
+
+
+
+{% endblock %}
+
