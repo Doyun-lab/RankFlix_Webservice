@@ -64,13 +64,14 @@
         <div class='page-header'>
                 <div class='Menu-bar'>
                         <ul class='menu-bar'>
-                                <li><a href="">Netflix Market</a></li>
+				<li><a href="{{url_for('web_home')}}">Rank Flix</a></li>
                                 <li><a href="{{url_for('web_help')}}">Help</a></li>
                                 <li><a href="{{url_for('web_login')}}">Login</a></li>
 				<li><a href="{{url_for('web_popular')}}">인기 급상승</a></li>
 				<li><a href="{{url_for('web_krRank')}}">한국 랭킹</a></li>
 				<li><a href="{{url_for('web_usaRank')}}">미국 랭킹</a></li>
 				<li><a href="{{url_for('web_ukRank')}}">영국 랭킹</a></li>
+				<li><a href="{{url_for('web_board')}}">게시판</a></li>
                         </ul>
                 </div>
                 <hr/>
@@ -93,6 +94,10 @@
       		<a href="https://www.netflix.com/browse">
 			<img src="{{url_for('static', filename='netflix.png')}}" alt ="" width="50%", align="center">
         	</a>
+
+
+	
+		
  
 	</div>
 </body>

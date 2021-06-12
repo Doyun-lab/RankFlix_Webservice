@@ -118,12 +118,36 @@ def login():
     return ret
 
 @app.route('/')
+def web_home():
+    return render_template("home.html")
+
+@app.route('/login')
 def web_login():
     return render_template("index.html")
 
 @app.route('/help')
 def web_help():
     return render_template("help.html")
+
+@app.route('/popular')
+def web_popular():
+    return render_template("popular.html")
+
+@app.route('/rankKR')
+def web_krRank():
+    return render_template("kr_rank.html")
+
+@app.route('/rankUSA')
+def web_usaRank():
+    return render_template("usa_rank.html")
+
+@app.route('/rankUK')
+def web_ukRank():
+    return render_template("uk_rank.html")
+
+@app.route('/board')
+def web_board():
+    return render_template("board.html")
 
 @app.route('/handle-login', methods=["POST"])
 def handle_login():
