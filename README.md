@@ -70,5 +70,3 @@ dy20181480@gmail.com
 ### License
 
 Apache-2.0
-
-![image](https://user-images.githubusercontent.com/70316401/118920316-2b126180-b971-11eb-8a4a-9ffd7f7334b3.png)
