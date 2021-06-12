@@ -3,41 +3,14 @@
 <head>
         <meta charset="UTF-8">
         <title>Netflix Recommenation - Doyun</title>
-	<style>
-	 table, th, td {
-		 border:1px solid #ccc;
-		 border-collapse: collapse;
-	}
-	th, td { padding:10px 20px; }
-	</style>
 </head>
 <body>
         <div id="service_title"></div>
         <div id="service_content">
-                 <table>
-          	  <caption>    의 선호 콘텐츠</caption>
-          	  <colgroup>
-            	   <col style="background-color: rgb(194, 194, 191);">
-            	   <col>
-            	   <col span="2" style="width:15-px;">
-          	  </colgroup>
-          	  <thead>
-            	   <tr>
-              	    <th>제목</th>
-              	    <th>배우</th>
-              	    <th>감독</th>
-                   </tr>
-          	  </thead>
-          	  <tbody>
-            	   <tr>
-              	    <td>킹덤</td>
-              	    <td>주지훈, 배두나 등</td>
-              	    <td>김성훈</td>
-		   </tr>
-		  </tbody>
-		  </table>
+                        NO content
         </div>
 </body>
+     
 <script src="{{url_for('static', filename='jquery-1.12.4.min.js')}}"></script>
 <script src="{{url_for('static', filename='jquery-ui.js')}}"></script>
 <script type="text/javascript">
@@ -47,7 +20,7 @@ var sess_info_json = JSON.parse(sess_info);
 var sess_id = sess_info_json['session_id'];
 console.log(sess_id);
 var service_type = sess_info_json['service_type'];
-var company_name = "";
+var contents_title = "";
 
 function service1(service1_info_json)
 {
@@ -58,24 +31,22 @@ function service1(service1_info_json)
 
         if (service1_info_json['result'] == true)
         {
-                let companies = Object.keys(service1_info_json['msg']);
-                console.log(companies);
+                let contents = Object.keys(service1_info_json['msg']);
+                console.log(contents);
 
                 var table_html = '<table border="2">' +
                         '<th>관심 콘텐츠</th>' +
                         '<th>배우</th>' +
-                        '<th>감독</th>' +
-                        '<th>Service 2</th>';
-                for(var i=0; i < companies.length; ++i) {
-                        var cname = "스위트홈";
-                        var recent_actor = service1_info_json[i'msg'][cname]['recent']['actor'];
-                        var recent_director = service1_info_json['msg'][cname]['recent']['director'];
+                        '<th>감독</th>';
+                for(var i=0; i < contents.length; ++i) {
+                        var cname = contents[i];
+                        var actor = service1_info_json['msg'][cname]['actor'];
+                        var director = service1_info_json['msg'][cname]['director'];
                        
                         table_html += '<tr>';
                         table_html += '<td>' + cname + '</td>';
-                        table_html += '<td>' + recent_actor + '</td>';
-                        table_html += '<td>' + recent_director + '</td>';
-                        table_html += '<td><button onclick="goto_service2(\'' + cname + '\')">유사 종목보기</button></td>';
+                        table_html += '<td>' + actor + '</td>';
+                        table_html += '<td>' + director + '</td>';
                         table_html += '</tr>';
                 }
                 table_html += '</table>';
@@ -87,42 +58,7 @@ function service1(service1_info_json)
         }
 }
 
-function service2(service2_info_json)
-{
-        console.log("service2");
-        console.log(JSON.stringify(service2_info_json));
 
-        $("#service_title").html("<h2>Service #2 - '" + company_name + "' 유사종목</h2>");
-
-        if (service2_info_json['result'] == true)
-        {
-                let sims = service2_info_json['msg']['similar_list'];
-                let total_sims = 10;
-
-                var table_html = '<table border="2">' +
-                        '<th>Rank</th>' +
-                        '<th>종목</th>' +
-                        '<th>유사도</th>';
-                for(var i=0; i < total_sims; ++i) {
-                        if (i >= sims.length)
-                                break;
-                        var cname = sims[i][0];
-                        var sim_value = sims[i][1];
-
-                        table_html += '<tr>';
-                        table_html += '<td>' + (i+1) + '</td>';
-                        table_html += '<td>' + cname + '</td>';
-                        table_html += '<td>' + sim_value + '</td>';
-                        table_html += '</tr>';
-                }
-                table_html += '</table>';
-                $("#service_content").html(table_html);
-        }
-        else
-        {
-                $("#service_content").html("No content");
-        }
-}
 
 function refresh(event)
 {
@@ -154,12 +90,8 @@ function refresh(event)
         }
 }
 
-function goto_service2(target_company_name)
-{
-        company_name = target_company_name;
-        service_type = "service2";
-        refresh();
-}
+
+
 
 $(window).on("load", refresh(event));
 
