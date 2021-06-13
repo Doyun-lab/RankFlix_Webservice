@@ -160,6 +160,9 @@
 
 <div class="viewcode-block" id="web_home"><a class="viewcode-back" href="../service.html#service.web_home">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_home</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Show the home screen.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="web_login"><a class="viewcode-back" href="../service.html#service.web_login">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">)</span>
@@ -172,19 +175,38 @@
 
 <div class="viewcode-block" id="web_popular"><a class="viewcode-back" href="../service.html#service.web_popular">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/popular&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_popular</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Show the month ranking.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;popular.html&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="web_krRank"><a class="viewcode-back" href="../service.html#service.web_krRank">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/rankKR&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_krRank</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;It shows Netflix&#39;s ranking of all-time content in Korea.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;kr_rank.html&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="web_usaRank"><a class="viewcode-back" href="../service.html#service.web_usaRank">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/rankUSA&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_usaRank</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;It shows Netflix&#39;s ranking of all-time content in USA.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;usa_rank.html&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="web_ukRank"><a class="viewcode-back" href="../service.html#service.web_ukRank">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/rankUK&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_ukRank</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;It shows Netflix&#39;s ranking of all-time content in UK.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;uk_rank.html&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="web_adRank"><a class="viewcode-back" href="../service.html#service.web_adRank">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/rankAD&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">web_adRank</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;It shows popular directors and actors of Netflix content.</span>
+<span class="sd">    :return: HTML document (render_template() result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;ad_rank.html&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="web_board"><a class="viewcode-back" href="../service.html#service.web_board">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/board&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">web_board</span><span class="p">():</span>
@@ -193,10 +215,10 @@
 <div class="viewcode-block" id="handle_login"><a class="viewcode-back" href="../service.html#service.handle_login">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/handle-login&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">handle_login</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Login function for web service.</span>
-
 <span class="sd">    :return: HTML document (render_template() result)</span>
 <span class="sd">    :rtype: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">user_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
     <span class="n">passwd</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;passwd&#39;</span><span class="p">)</span>
     <span class="n">loggers</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: login(web)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">))</span>
@@ -222,7 +244,7 @@
 
     <span class="n">ret_json</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;service.html&quot;</span><span class="p">,</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;service_test.html&quot;</span><span class="p">,</span>
             <span class="n">session_info</span><span class="o">=</span><span class="n">ret_json</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="services"><a class="viewcode-back" href="../service.html#service.services">[문서]</a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/services&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>

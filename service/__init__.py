@@ -119,6 +119,9 @@ def login():
 
 @app.route('/')
 def web_home():
+    """Show the home screen.
+    :return: HTML document (render_template() result)
+    """
     return render_template("home.html")
 
 @app.route('/login')
@@ -131,22 +134,37 @@ def web_help():
 
 @app.route('/popular')
 def web_popular():
+    """Show the month ranking.
+    :return: HTML document (render_template() result)
+    """
     return render_template("popular.html")
 
 @app.route('/rankKR')
 def web_krRank():
+    """It shows Netflix's ranking of all-time content in Korea.
+    :return: HTML document (render_template() result)
+    """
     return render_template("kr_rank.html")
 
 @app.route('/rankUSA')
 def web_usaRank():
+    """It shows Netflix's ranking of all-time content in USA.
+    :return: HTML document (render_template() result)
+    """
     return render_template("usa_rank.html")
 
 @app.route('/rankUK')
 def web_ukRank():
+    """It shows Netflix's ranking of all-time content in UK.
+    :return: HTML document (render_template() result)
+    """
     return render_template("uk_rank.html")
 
 @app.route('/rankAD')
 def web_adRank():
+    """It shows popular directors and actors of Netflix content.
+    :return: HTML document (render_template() result)
+    """
     return render_template("ad_rank.html")
 
 @app.route('/board')
@@ -156,10 +174,10 @@ def web_board():
 @app.route('/handle-login', methods=["POST"])
 def handle_login():
     """Login function for web service.
-
     :return: HTML document (render_template() result)
     :rtype: str
     """
+
     user_id = request.values.get('user_id')
     passwd = request.values.get('passwd')
     loggers['login'].info('{}: login(web)'.format(user_id))

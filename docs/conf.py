@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # da_design_server20181480 documentation build configuration file, created by
-# sphinx-quickstart on Sat Jun 12 17:58:18 2021.
+# sphinx-quickstart on Sun Jun 13 11:33:07 2021.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
