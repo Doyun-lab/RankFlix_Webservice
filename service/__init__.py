@@ -145,6 +145,10 @@ def web_usaRank():
 def web_ukRank():
     return render_template("uk_rank.html")
 
+@app.route('/rankAD')
+def web_adRank():
+    return render_template("ad_rank.html")
+
 @app.route('/board')
 def web_board():
     return render_template("board.html")
@@ -181,7 +185,7 @@ def handle_login():
 
     ret_json = dumps(ret, ensure_ascii=False)
 
-    return render_template("service.html",
+    return render_template("service_test.html",
             session_info=ret_json)
 
 @app.route('/services', methods=["POST"])

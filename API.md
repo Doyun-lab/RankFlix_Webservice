@@ -30,7 +30,7 @@
 
 ## favorite
 
-* 기능: 선호종목(기업) 추가 & 리스트 얻기
+* 기능: 선호 콘텐츠 추가 및 List-up
 
 * URI
    - IP:port/favorite
@@ -40,14 +40,14 @@
   - Example
   
 ```python
-* 선호종목(기업) 추가하는 경우
+* 선호 콘텐츠 추가하는 경우
 {
    "request_type": "add",
    "session_id": "...",
    "favorite": ["...", "...", ...]
 }
 
-* 선호종목(기업) 리스트 얻는 경우
+* 선호 콘텐츠 리스트 얻는 경우
 {
    "request_type": "get",
    "session_id": "..."
@@ -59,14 +59,14 @@
   - Example
   
 ```python
-* 선호종목(기업) 추가 성공
+* 선호 콘텐츠  추가 성공
 {
    "session_id": "...",
    "result": true,
    "msg": ""
 }
 
-* 선호종목(기업) 추가 실패
+* 선호 콘텐츠  추가 실패
 {
    "session_id": "...",
    "result": false,
@@ -79,7 +79,7 @@
    "msg": "..."
 }
 
-* 선호종목(기업) 리스트 얻는 경우
+* 선호 콘텐츠  리스트 얻는 경우
 {
    "session_id": "...",
    "favorite": ["...", "...", ...]
