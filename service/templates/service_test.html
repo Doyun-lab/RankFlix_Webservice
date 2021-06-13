@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+        <meta charset="UTF-8">
+        <title>Netflix Recommendation - Doyun</title>
+	<style>
+  @import url("https://fonts.googleapis.com/css?family=Nanum+Gothic");
+  body{
+    font: 17px 'Nanum Gothic', sans-serif;
+  }
+
+	 table, th, td {
+		 border:1px solid #ccc;
+		 border-collapse: collapse;
+	}
+	th, td { padding:10px 20px; }
+
+	ul{
+		background-color: #ff3300;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+
+  li {
+    float: left;
+    border-right: 1px solid #ccc;
+  }
+
+  li:last-child{
+    border-right: none;
+  }
+  
+	li { float: left; }
+	li a {
+		display: block;
+		background-color: #ff3300;
+		color: #000000;
+		padding: 14px 16px;
+		text-decoration: none;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	li a.current{
+		background-color: #333CCC;
+		color: white;
+	}
+
+	li a:hover:not(.current) {
+		background-color: #ff3434b4;
+		color: white;
+	}
+
+	img { display : block;
+              margin : auto;}
+
+	</style>
+
+</head>
+<body style="background-color:#F3F2F0">
+
+	<div id="container">
+      		<a href="https://www.netflix.com/browse">
+			<img src="{{url_for('static', filename='netflix.png')}}" alt ="" width="50%", align="center">
+        	</a>
+
+      		<h2 align="center">선호 콘텐츠 목록</h2>
+		<h3 align="center">
+        	 <table style="margin-left: auto; margin-right: auto;">
+          	  <caption>"" 의 선호 콘텐츠</caption>
+          	  <colgroup>
+            	   <col style="background-color: rgb(194, 194, 191);">
+            	   <col>
+            	   <col span="2" style="width:15-px;">
+          	  </colgroup>
+          	  <thead>
+            	   <tr>
+
+              	    <th>제목</th>
+              	    <th>배우</th>
+              	    <th>감독</th>
+                   </tr>
+          	  </thead>
+          	  <tbody>
+            	   <tr></tr>
+              	    <td>킹덤</td>
+              	    <td>주지훈, 배두나 등</td>
+              	    <td>김성훈</td>
+		   </tr>
+
+          	  </tbody>
+        	 </table>
+      		</h3>
+
+	</div>
+</body>
+</html>
